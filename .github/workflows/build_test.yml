@@ -11,9 +11,7 @@ on:
 
 jobs:
   build_test:
-    
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v4
@@ -28,6 +26,10 @@ jobs:
     - name: Run integration tests
       run: npm test
       
+  deployment: 
+    needs: build_test
+    runs-on: ubuntu-latest
+    steps:
     - name: Deploy to production
       uses: johnbeynon/render-deploy-action@v0.0.8
       with:
